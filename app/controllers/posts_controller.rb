@@ -22,10 +22,10 @@ class PostsController < ApplicationController
 	def edit
 		@post = Post.find(params[:id])
 	end
-
+		# Notice how the title and description attributes are now nested within the post hash? That's why we needed to add the require method.
 	def update
 	  @post = Post.find(params[:id])
-	  @post.update(title: params[:title], description: params[:description])
+	  @post.update(params.require(:post))
 	  redirect_to post_path(@post)
 	end
 end
